@@ -41,18 +41,19 @@ function startTheGame () {
 }
 //Function #2 that verifies the letter inside the arrays
 function checkingletters(letter){
-	alert(letter);
-	var istheletterthere = false;
+	// alert(letter);
+	var isLetterInWord = false;
 
 	for(var i = 0; i<numBlanks; i++){
 		if(selectedWord[i] == letter){
-			istheletterthere = true;
+			isLetterInWord = true;
 		}
 	}
 	//checking the letter is in word
-	if(istheletterthere){
+	if(isLetterInWord){
 		for(var i = 0; i<numBlanks; i++){
-			if(selectedWord[i] = letter){
+			if(selectedWord[i] == letter){
+				blanksandMatches[i] = letter;
 			}
 		}
 	}
@@ -60,15 +61,32 @@ function checkingletters(letter){
 	 	incorrectLetter.push(letter);
 	 	guessesLeft--
 	 }
-	 console.log(blanksandMatches);
 
+	 console.log(blanksandMatches);
+}
+//Function #3 
+function roundfinish(){
+	console.log("Win Count: " + winCount + "| Loss Count: " + "| Guesses Left " + guessesLeft);
+	if (lettersinWord.toString() == blanksandMatches.toString()){
+		//wins
+		winCount++;
+		alert("You Won!");
+		//updating the win counter
+		document.getElementById("wins").innerHTML = winCount;
+		document,getElementById("losses").innerHTML = losseCount;
+		startTheGame();
+		//losses
+	}
 
 }
 //calling the function called starttheGame
+checkingletters();
 startTheGame();
-//Function #3 onKeyUp event listener.
+//Function #4 onKeyUp event listener.
 document.onkeyup = function(event) {
 	var letterpressed = String.fromCharCode(event.keyCode).toLowerCase();
+	checkingletters(letterpressed);
+	roundfinish();
 	console.log(letterpressed);
 
 }
