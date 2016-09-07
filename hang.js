@@ -67,18 +67,29 @@ function checkingletters(letter){
 //Function #3 
 function roundfinish(){
 	console.log("Win Count: " + winCount + "| Loss Count: " + "| Guesses Left " + guessesLeft);
+	//update the HTML to reflect the changes!.  
+	document.getElementById("guessesL").innerHTML = "Guest Left " + guessesLeft;
+	document.getElementById("thesecret").innerHTML = blanksandMatches.join(" ");
+	document.getElementById("wrongG").innerHTML = "Wrong Guesses: " +incorrectLetter.join(" ");
 	if (lettersinWord.toString() == blanksandMatches.toString()){
-		//wins
+		//check if wins
 		winCount++;
 		alert("You Won!");
-		//updating the win counter
+		
+		//updating the win counter in HTML
 		document.getElementById("wins").innerHTML = winCount;
-		document,getElementById("losses").innerHTML = losseCount;
 		startTheGame();
-		//losses
-	}
+		//check if losses
+	} else if (guessesLeft == 0){
+		losseCount++;
+		alert("You Lost!");
+		startTheGame();	
+		//updating the losses in the HTML
+		document.getElementById("losses").innerHTML = "Losses " + losseCount;
+	 }
 
-}
+};
+
 //calling the function called starttheGame
 checkingletters();
 startTheGame();
