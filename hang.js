@@ -71,21 +71,22 @@ function roundfinish(){
 	document.getElementById("guessesL").innerHTML = "Guest Left " + guessesLeft;
 	document.getElementById("thesecret").innerHTML = blanksandMatches.join(" ");
 	document.getElementById("wrongG").innerHTML = "Wrong Guesses: " +incorrectLetter.join(" ");
+	
 	if (lettersinWord.toString() == blanksandMatches.toString()){
 		//check if wins
 		winCount++;
 		alert("You Won!");
 		
 		//updating the win counter in HTML
-		document.getElementById("wins").innerHTML = winCount;
-		startTheGame();
+		document.getElementById("wins").innerHTML = "Wins " + winCount;
 		//check if losses
 	} else if (guessesLeft == 0){
 		losseCount++;
 		alert("You Lost!");
-		startTheGame();	
 		//updating the losses in the HTML
 		document.getElementById("losses").innerHTML = "Losses " + losseCount;
+		startTheGame();	
+
 	 }
 
 };
